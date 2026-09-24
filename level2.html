@@ -194,33 +194,24 @@ let portalEdges = [
     let projectedVertices = [];
 
     for(let v = 0; v< vertices.length; v++){
-       console.log("original position:");  
-       console.log( vertices[v] );
 
-       console.log("camera-relative position");
        let camVert = {}; 
        camVert.x = camera.x - vertices[v].x;
        camVert.y = camera.y - vertices[v].y;
        camVert.z = camera.z - vertices[v].z;
-       console.log( camVert );
 	
 	if (camVert.z >= -0.1) {
       		projectedVertices.push(null);	
 		continue;
       }
-       console.log("projected position"); 
        let canvasPos = {};
        canvasPos.u = camVert.x / camVert.z; 
        canvasPos.v =  camVert.y / camVert.z;
-       console.log( canvasPos );
 
-       console.log("scale and center"); 
        canvasPos.u = canvasPos.u * 320 + 320/2;
        canvasPos.v = canvasPos.v * 200 + 200/2;
-       console.log( canvasPos );
 
        projectedVertices.push(canvasPos);
-       console.log("---------------"); 
 
     }
     return projectedVertices;
@@ -308,7 +299,7 @@ function scale(vertices, alpha) {
     let tree4Projected = project(transform(scale(treeVertices, .2), -17, 0, 275));
     drawObj(treeEdges, tree4Projected, "#06402B");
    
-    let tree5Projected = project(transform(scale(treeVertices, .3), 0, 0, 200));
+    let tree5Projected = project(transform(scale(treeVertices, .3), 10, 0, 200));
     drawObj(treeEdges, tree5Projected, "#06402B");
     
     let tree6Projected = project(transform(scale(treeVertices, 2), 13, 0, 350));
